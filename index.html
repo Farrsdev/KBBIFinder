@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="KBBI Finder - Kamus Besar Bahasa Indonesia">
+    <meta name="theme-color" content="#121212">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>KBBI Finder - Kamus Besar Bahasa Indonesia</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header with gradient -->
+            <div class="header">
+                <div class="header-left">
+                    <h1 class="app-title">KBBI Finder</h1>
+                    <span class="word-count" id="wordCount">Memuat kata...</span>
+                </div>
+
+                <!-- Theme selector -->
+                <div class="theme-selector">
+                    <div class="theme-button" id="themeButton">
+                        <span class="theme-dot" id="themeDot"></span>
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="theme-dropdown" id="themeDropdown">
+                        <div class="theme-option" data-color="green">
+                            <span class="theme-dot green"></span>
+                            <span>Green</span>
+                            <i class="fas fa-check check-icon"></i>
+                        </div>
+                        <div class="theme-option" data-color="blue">
+                            <span class="theme-dot blue"></span>
+                            <span>Blue</span>
+                            <i class="fas fa-check check-icon"></i>
+                        </div>
+                        <div class="theme-option" data-color="purple">
+                            <span class="theme-dot purple"></span>
+                            <span>Purple</span>
+                            <i class="fas fa-check check-icon"></i>
+                        </div>
+                        <div class="theme-option" data-color="orange">
+                            <span class="theme-dot orange"></span>
+                            <span>Orange</span>
+                            <i class="fas fa-check check-icon"></i>
+                        </div>
+                        <div class="theme-option" data-color="teal">
+                            <span class="theme-dot teal"></span>
+                            <span>Teal</span>
+                            <i class="fas fa-check check-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Card -->
+            <div class="search-card">
+                <!-- Search Input -->
+                <div class="search-input-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Cari kata..."
+                        autocomplete="off">
+                    <i class="fas fa-search search-icon"></i>
+                    <button class="clear-button" id="clearButton">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="recommendations">
+                    <span class="recommendations-label">Rekomendasi</span>
+                    <div class="chip-container" id="recommendations">
+                        <button class="chip" data-value="ax">ax</button>
+                        <button class="chip" data-value="ex">ex</button>
+                        <button class="chip" data-value="y">y</button>
+                        <button class="chip" data-value="v">v</button>
+                        <button class="chip" data-value="pr">pr</button>
+                        <button class="chip" data-value="st">st</button>
+                        <button class="chip" data-value="in">in</button>
+                        <button class="chip" data-value="co">co</button>
+                        <button class="chip" data-value="x">x</button>
+                        <button class="chip" data-value="w">w</button>
+                        <button class="chip" data-value="ks">ks</button>
+                        <button class="chip" data-value="sme">sme</button>
+                        <button class="chip" data-value="dr">dr</button>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls">
+                    <div class="mode-toggle">
+                        <button class="mode-button active" data-mode="prefix">Awal</button>
+                        <button class="mode-button" data-mode="suffix">Akhir</button>
+                    </div>
+
+                    <div class="right-controls">
+                        <!-- Sort Dropdown -->
+                        <div class="sort-selector">
+                            <button class="sort-button" id="sortButton">
+                                <i class="fas fa-arrow-up" id="sortIcon"></i>
+                                <span id="sortText">A-Z</span>
+                            </button>
+                            <div class="sort-dropdown" id="sortDropdown">
+                                <div class="sort-option" data-sort="asc">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span>A-Z (Ascending)</span>
+                                    <i class="fas fa-check check-icon"></i>
+                                </div>
+                                <div class="sort-option" data-sort="desc">
+                                    <i class="fas fa-arrow-down"></i>
+                                    <span>Z-A (Descending)</span>
+                                    <i class="fas fa-check check-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- No Vowel Toggle -->
+                        <div class="novowel-toggle">
+                            <span class="novowel-label">No V</span>
+                            <label class="switch">
+                                <input type="checkbox" id="novowelSwitch">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Header -->
+            <div class="results-header" id="resultsHeader" style="display: none;">
+                <span class="results-count" id="resultsCount">0 hasil</span>
+                <span class="novowel-indicator" id="novowelIndicator">Tanpa vokal didahulukan</span>
+            </div>
+
+            <!-- Results List -->
+            <div class="results-list" id="resultsList">
+                <!-- Results will be dynamically inserted here -->
+            </div>
+
+            <!-- Loading Indicator -->
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <span>Memuat kata-kata...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
