@@ -1,33 +1,99 @@
 # KBBI Finder 📚
 
-**KBBI Finder** adalah aplikasi Android sederhana untuk mencari kata dalam daftar kosakata Bahasa Indonesia menggunakan dataset KBBI.
-Aplikasi ini dibuat menggunakan **Kotlin** dan **Jetpack Compose** dengan fokus pada pencarian kata yang cepat dan fleksibel.
+**KBBI Finder** adalah aplikasi Android untuk mencari kata dalam dataset KBBI secara cepat dan offline.
+Aplikasi ini dibuat menggunakan **Kotlin** dan **Jetpack Compose** dengan tujuan mengeksplorasi berbagai teknik pencarian kata seperti **prefix**, **suffix**, dan filter khusus.
+
+Repository pada branch ini berisi **source code aplikasi**.
 
 ---
 
-## ✨ Fitur
+# ✨ Fitur
 
-* 🔎 **Pencarian Prefix**
-  Mencari kata yang **diawali** dengan teks tertentu.
+### 🔎 Pencarian Prefix
 
-* 🔚 **Pencarian Suffix**
-  Mencari kata yang **diakhiri** dengan teks tertentu.
+Mencari kata yang **diawali** dengan teks tertentu.
 
-* 🔤 **Mode Tanpa Vokal**
-  Menyorot kata yang **tidak memiliki huruf vokal (a, i, u, e, o)**.
+Contoh:
 
-* 🎨 **Pemilihan Warna Tema**
-  Pengguna dapat mengganti warna aksen aplikasi.
-
-* ⚡ **Pencarian Cepat**
-  Menggunakan dataset lokal sehingga pencarian sangat cepat tanpa internet.
-
-* 💡 **Rekomendasi Awalan Kata**
-  Tombol cepat untuk mencoba beberapa awalan kata umum.
+```
+query: pr
+hasil: pria, proses, proyek, produk
+```
 
 ---
 
-## 🛠 Teknologi yang Digunakan
+### 🔚 Pencarian Suffix
+
+Mencari kata yang **diakhiri** dengan teks tertentu.
+
+Contoh:
+
+```
+query: an
+hasil: makanan, jalan, tulisan
+```
+
+---
+
+### 🔤 Mode Tanpa Vokal
+
+Kata yang **tidak memiliki huruf vokal (a, i, u, e, o)** akan:
+
+* diprioritaskan di bagian atas
+* ditampilkan dengan highlight khusus
+
+---
+
+### 🔃 Pengurutan Hasil
+
+Hasil pencarian dapat diurutkan:
+
+* **A-Z (Ascending)**
+* **Z-A (Descending)**
+
+---
+
+### 🎨 Pemilihan Warna Tema
+
+Pengguna dapat mengganti warna aksen aplikasi secara dinamis.
+
+Tema yang tersedia:
+
+* Green
+* Blue
+* Purple
+* Orange
+* Teal
+
+---
+
+### 💡 Rekomendasi Pencarian
+
+Aplikasi menyediakan chip rekomendasi untuk mencoba beberapa awalan kata populer seperti:
+
+```
+ax
+ex
+y
+v
+pr
+st
+in
+co
+```
+
+---
+
+### ⚡ Pencarian Offline
+
+Dataset kata dimuat dari file lokal sehingga:
+
+* tidak memerlukan koneksi internet
+* pencarian berlangsung sangat cepat
+
+---
+
+# 🛠 Teknologi yang Digunakan
 
 * **Kotlin**
 * **Jetpack Compose**
@@ -36,14 +102,13 @@ Aplikasi ini dibuat menggunakan **Kotlin** dan **Jetpack Compose** dengan fokus 
 
 ---
 
-## 📂 Struktur Proyek
+# 📂 Struktur Proyek
 
 ```
 app/
  ├── src/main
  │   ├── java/com/example/kbbifinder
- │   │   ├── MainActivity.kt
- │   │   └── DictionaryScreen.kt
+ │   │   └── MainActivity.kt
  │   ├── assets
  │   │   └── kbbi.txt
  │   └── res
@@ -51,33 +116,42 @@ app/
 
 ---
 
-## ⚙ Cara Kerja
+# ⚙ Cara Kerja
 
-1. Aplikasi memuat daftar kata dari file `kbbi.txt` yang berada di folder **assets**.
-2. Kata-kata tersebut disimpan di memori saat aplikasi dijalankan.
-3. Saat pengguna mengetik pada kolom pencarian:
+1. Dataset dimuat dari file:
 
-   * Mode **Prefix** menggunakan `startsWith()`
-   * Mode **Suffix** menggunakan `endsWith()`
-4. Jika mode **No Vokal** aktif, kata tanpa vokal akan ditampilkan dengan highlight khusus.
+```
+assets/kbbi.txt
+```
+
+2. Semua kata dinormalisasi menjadi huruf kecil.
+
+3. Saat pengguna melakukan pencarian:
+
+* Mode **Prefix** menggunakan `startsWith()`
+* Mode **Suffix** menggunakan `endsWith()`
+
+4. Jika **No Vowel Mode** aktif, kata tanpa vokal akan diprioritaskan di bagian atas.
+
+5. Hasil pencarian dapat diurutkan secara **ascending** atau **descending**.
 
 ---
 
-## 🚀 Cara Menjalankan
+# 🚀 Menjalankan Project
 
-1. Clone repository ini
+1. Clone repository
 
 ```
-git clone https://github.com/username/kbbifinder.git
+git clone https://github.com/farrsdev/KBBIFinder.git
 ```
 
-2. Buka project di **Android Studio**
+2. Buka project menggunakan **Android Studio**
 
-3. Jalankan aplikasi di emulator atau perangkat Android.
+3. Jalankan aplikasi pada emulator atau perangkat Android.
 
 ---
 
-## 📊 Dataset
+# 📊 Dataset
 
 Dataset kata disimpan pada file:
 
@@ -99,24 +173,24 @@ cinta
 
 ---
 
-## 🔮 Pengembangan Selanjutnya
+# 🔮 Pengembangan Selanjutnya
 
-Beberapa ide pengembangan:
+Beberapa ide pengembangan yang bisa ditambahkan:
 
 * Menambahkan **arti kata**
-* Menggunakan **database SQLite atau FTS** untuk pencarian lebih cepat
+* Menggunakan **SQLite / Full Text Search (FTS)** untuk dataset yang lebih besar
 * Fitur **bookmark kata**
 * Fitur **riwayat pencarian**
-* Mode **dark/light theme**
+* Tampilan **dark / light theme**
 
 ---
 
-## 👨‍💻 Pembuat
+# 👨‍💻 Pembuat
 
 Farr
 
 ---
 
-## 📜 Lisensi
+# 📜 Lisensi
 
-Proyek ini bersifat open-source dan dapat digunakan untuk keperluan pembelajaran.
+Proyek ini bersifat open-source dan dibuat untuk keperluan pembelajaran serta eksplorasi pengembangan aplikasi Android.
