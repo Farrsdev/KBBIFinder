@@ -512,20 +512,34 @@ input:checked + .slider:before {
 
 .group-letter {
     color: var(--accent-color);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     white-space: nowrap;
-    padding-right: 8px;
+    flex-shrink: 0;
 }
 
 .group-line {
     flex: 1;
     height: 1px;
-    background-image: linear-gradient(to right, var(--accent-color) 50%, transparent 50%);
-    background-size: 8px 1px;
+    min-width: 20px;
+    background-image: linear-gradient(to right, var(--accent-color) 60%, transparent 60%);
+    background-size: 10px 1px;
     background-repeat: repeat-x;
     opacity: 0.4;
+}
+
+/* Thick separator style */
+.group-header.thick .group-letter {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.group-header.thick .group-line {
+    height: 2px;
+    background-size: 16px 2px;
+    background-image: linear-gradient(to right, var(--accent-color) 70%, transparent 70%);
+    opacity: 0.6;
 }
 
 /* Alternative solid line version */
@@ -539,24 +553,30 @@ input:checked + .slider:before {
 @media screen and (min-width: 768px) {
     .group-header {
         padding: 20px 0 10px 0;
+        gap: 16px;
     }
 
     .group-letter {
-        font-size: 15px;
+        font-size: 16px;
     }
 
     .group-line {
-        background-size: 10px 1px;
+        background-size: 14px 1px;
     }
 }
 
 @media screen and (min-width: 1024px) {
     .group-header {
         padding: 24px 0 12px 0;
+        gap: 20px;
     }
 
     .group-letter {
-        font-size: 16px;
+        font-size: 18px;
+    }
+
+    .group-line {
+        background-size: 18px 2px;
     }
 }
 
@@ -567,11 +587,12 @@ input:checked + .slider:before {
     }
 
     .group-letter {
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .group-line {
-        background-size: 6px 1px;
+        background-size: 8px 1px;
+        min-width: 10px;
     }
 }
 
